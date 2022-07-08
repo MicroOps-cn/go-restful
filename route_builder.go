@@ -148,6 +148,15 @@ func (b *RouteBuilder) Param(parameter *Parameter) *RouteBuilder {
 	return b
 }
 
+// Params allows you to document the multiple parameters of the Route. It adds a new Parameter (does not check for duplicates).
+func (b *RouteBuilder) Params(parameter ...*Parameter) *RouteBuilder {
+	if b.parameters == nil {
+		b.parameters = []*Parameter{}
+	}
+	b.parameters = append(b.parameters, parameter...)
+	return b
+}
+
 // Operation allows you to document what the actual method/function call is of the Route.
 // Unless called, the operation name is derived from the RouteFunction set using To(..).
 func (b *RouteBuilder) Operation(name string) *RouteBuilder {
